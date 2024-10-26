@@ -14,7 +14,7 @@ def cadastra_usuario(nome, email, nome_usuario, senha, dt_nasc, tipoPerfil):
     # Configurações de conexão com o MySQL
     conn = mysql.connector.connect(
         host='localhost', user='root', password='batata123',
-        port=3306, db='censo_escolar', auth_plugin='mysql_native_password'
+        port=3306, db='censo_escolar', auth_plugin='caching_sha2_password'
     )
     cursor = conn.cursor()
 
