@@ -9,9 +9,9 @@ st.title("Título")
 st.sidebar.header("Cabeçalho sidebar")
 st.sidebar.radio("radiobutton", [1,2])
 
-conn = mysql.connector.connect(host=st.secrets["DB_HOST"]
-                               , user=st.secrets["DB_USERNAME"], password=st.secrets["DB_PASSWORD"]
-                               , port=st.secrets["DB_PORT"], db=st.secrets["DB_NAME"]
+conn = mysql.connector.connect(host=st.secrets.DB_HOST
+                               , user=st.secrets.DB_USERNAME, password=st.secrets.DB_PASSWORD
+                               , port=st.secrets.DB_PORT, db=st.secrets.DB_NAME
                                , auth_plugin='mysql_native_password')
 
 cursor = conn.cursor()

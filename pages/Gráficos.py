@@ -10,7 +10,7 @@ def load_escolas():
                                , port=st.secrets["DB_PORT"], db=st.secrets["DB_NAME"]
                                , auth_plugin='mysql_native_password')
 	cursor = conn.cursor()
-	cursor.execute("select * from vw_escola;")
+	cursor.execute("select * from escolas;")
 	res = cursor.fetchall()
 	df = pd.DataFrame(res, columns=cursor.column_names)
 	return df
