@@ -12,10 +12,10 @@ def validar(nome, email, nome_usuario, senha, dt_nasc, tipoPerfil):
 
 def cadastra_usuario(nome, email, nome_usuario, senha, dt_nasc, tipoPerfil):
     # Configurações de conexão com o MySQL
-    conn = mysql.connector.connect(
-        host='localhost', user='root', password='batata123',
-        port=3306, db='censo_escolar', auth_plugin='caching_sha2_password'
-    )
+    conn = mysql.connector.connect(host=st.secrets["DB_HOST"]
+                            , user=st.secrets["DB_USERNAME"], password=st.secrets["DB_PASSWORD"]
+                            , port=st.secrets["DB_PORT"], db=st.secrets["DB_NAME"]
+                            , auth_plugin='mysql_native_password')
     cursor = conn.cursor()
 
     # Comando de inserção com o campo nomeUsuario incluído

@@ -4,9 +4,9 @@ import mysql.connector
 
 st.header("Aula de laboratório de banco de dados")
 
-conn = mysql.connector.connect(host="localhost"
-                               , user="root", password="aluno"
-                               , port=3306, db="labbd"
+conn = mysql.connector.connect(host=st.secrets["DB_HOST"]
+                               , user=st.secrets["DB_USERNAME"], password=st.secrets["DB_PASSWORD"]
+                               , port=st.secrets["DB_PORT"], db=st.secrets["DB_NAME"]
                                , auth_plugin='mysql_native_password')
 
 cursor = conn.cursor()
