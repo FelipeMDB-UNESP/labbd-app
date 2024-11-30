@@ -1,9 +1,29 @@
 import streamlit as st
 import mysql.connector
 import datetime
+import pandas as pd
 
 st.header("Aula de laboratório de banco de dados")
 st.write("**Conceitos Streamlit**")
+
+def existe(nome, email):
+
+    # Configurações de conexão com o MySQL
+    conn = mysql.connector.connect(host=st.secrets["DB_HOST"]
+                            , user=st.secrets["DB_USERNAME"], password=st.secrets["DB_PASSWORD"]
+                            , port=st.secrets["DB_PORT"], db=st.secrets["DB_NAME"]
+                            , auth_plugin='mysql_native_password')
+    cursor = conn.cursor()
+
+    sql_command = f"""SELECT * FROM usuario where nome == '{nome}' and email == '{email}');"""
+    cursor.execute(sql_command)
+
+    res = cursor.fetchall()
+    df = pd.DataFrame(res, columns=cursor.column_names)
+
+    cursor.close()
+    conn.close()
+    return not df.empty
 
 def validar(nome, email, nome_usuario, senha, dt_nasc, tipoPerfil):
     if nome == "" or email == "" or nome_usuario == "" or senha == "" or dt_nasc == "" or tipoPerfil == "":
