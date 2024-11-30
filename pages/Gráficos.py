@@ -4,13 +4,15 @@ import mysql.connector
 import matplotlib.pyplot as plt
 import numpy as np
 
+st.header("Alguns gráficos")
+
 def load_escolas():
 	conn = mysql.connector.connect(host=st.secrets["DB_HOST"]
                                , user=st.secrets["DB_USERNAME"], password=st.secrets["DB_PASSWORD"]
                                , port=st.secrets["DB_PORT"], db=st.secrets["DB_NAME"]
                                , auth_plugin='mysql_native_password')
 	cursor = conn.cursor()
-	cursor.execute("select * from vw_escola;")
+	cursor.execute("select * from escolas_view;")
 	res = cursor.fetchall()
 	df = pd.DataFrame(res, columns=cursor.column_names)
 	return df
