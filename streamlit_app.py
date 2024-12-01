@@ -17,6 +17,7 @@ def login():
         st.rerun()
     if right.button("Log in"):
         st.session_state.logging_in = True
+        st.rerun()
 
 def logout():
     if st.button("Log out"):
