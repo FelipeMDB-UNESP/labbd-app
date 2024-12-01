@@ -152,7 +152,7 @@ cadastro = st.Page(
 )
 
 escolas = st.Page(
-    "feito/Escolas.py", title="Escolas", icon=":material/dashboard:"
+    "feito/Escolas.py", title="Escolas", icon=":material/school:"
 )
 
 graficos = st.Page(
