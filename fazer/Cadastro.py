@@ -3,8 +3,7 @@ import mysql.connector
 import datetime
 import pandas as pd
 
-st.header("Aula de laboratório de banco de dados")
-st.write("**Conceitos Streamlit**")
+st.header("Dashboard com informações escolares")
 
 def existe(nome, email):
 
@@ -55,7 +54,7 @@ def cadastra_usuario(nome, email, nome_usuario, senha, dt_nasc, tipoPerfil):
         conn.close()
 
 with st.form("cadastro"):
-    st.title('Cadastro de usuários')
+    st.title('Cadastro de Usuário')
     nome = st.text_input('Nome:')
     email = st.text_input('Email:')
     nome_usuario = st.text_input('Nome de usuário:')

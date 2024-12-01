@@ -56,8 +56,6 @@ if botao_listar_escolas:
     st.subheader("Lista de Escolas")
     df_escolas = load_escolas()
     st.write(df_escolas)
-    if botao_listar_escolas:
-        botao_listar_escolas = False
 
 
 if botao_totais_escolas:
