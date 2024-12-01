@@ -41,35 +41,49 @@ def load_alunos_por_nivel():
     df = pd.DataFrame(res, columns=cursor.column_names)
     return df
 
-df_escolas = load_escolas()
-df_totals = load_totals()
-df_uma_escola = load_escola_turmas()
-df_professores_alunos = load_professores_alunos()
-df_alunos_por_nivel = load_alunos_por_nivel()
 
-if st.button("Listar Escolas"):
+
+botao_listar_escolas = st.button("Listar Escolas")
+botao_totais_escolas = st.button("Mostrar Totais por Escola")
+botao_ordenar_escolas = st.button("Ordenar Escolas por Número de Alunos")
+botao_listar_turmas = st.button("Ver Escolas e suas turmas")
+botao_professores_alunos = st.button("Ver Professores e Alunos por Escola")
+botao_nivel_ensino = st.button("Ver Alunos por Nível de Ensino")
+
+
+
+if botao_listar_escolas:
     st.subheader("Lista de Escolas")
+    df_escolas = load_escolas()
     st.write(df_escolas)
+    if botao_listar_escolas:
+        botao_listar_escolas = False
 
-if st.button("Mostrar Totais por Escola"):
+
+if botao_totais_escolas:
     st.subheader("Totais por Escola")
+    df_totals = load_totals()
     st.write(df_totals)
 
-if st.button("Ordenar Escolas por Número de Alunos"):
+if botao_ordenar_escolas:
     st.subheader("Escolas Ordenadas por Número de Alunos")
+    df_totals = load_totals()
     df_sorted = df_totals.sort_values(by="TOTAL_ALUNOS", ascending=False)
     st.write(df_sorted)
 
-if st.button("Ver Escolas e suas turmas"):
+if botao_listar_turmas:
     st.subheader("Escola e suas turmas")
+    df_uma_escola = load_escola_turmas()
     st.write(df_uma_escola)
 
-if st.button("Ver Professores e Alunos por Escola"):
+if botao_professores_alunos:
     st.subheader("Professores e Alunos por Escola")
+    df_professores_alunos = load_professores_alunos()
     st.write(df_professores_alunos)
 
-if st.button("Ver Alunos por Nível de Ensino"):
+if botao_nivel_ensino:
     st.subheader("Alunos por Nível de Ensino")
+    df_alunos_por_nivel = load_alunos_por_nivel()
     st.write(df_alunos_por_nivel)
 
 cursor.close()
