@@ -159,11 +159,19 @@ graficos = st.Page(
     "feito/Gráficos.py", title="Gráficos", icon=":material/bar_chart:"
 )
 
+geolocalizacao = st.Page(
+    "feito/Geolocalização.py", title="Localizações", icon=":material/map:"
+)
+
+favoritos = st.Page(
+    "feito/Favoritos.py", title="Favoritos", icon=":material/star:"
+)
+
 if st.session_state.logged_in:
     pg = st.navigation(
         {
             "Account": [logout_page],
-            "Dashboards": [inicio, escolas, graficos],
+            "Dashboards": [inicio, escolas, graficos, geolocalizacao, favoritos],
         }
     )
 
