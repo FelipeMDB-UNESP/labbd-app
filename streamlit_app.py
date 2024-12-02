@@ -162,7 +162,7 @@ logging_page = st.Page(logar, title="Logging in", icon=":material/login:")
 logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
 
 inicio = st.Page(
-    "feito/Inicio.py", title="Início", icon=":material/dashboard:", default=True
+    "páginas/Inicio.py", title="Início", icon=":material/dashboard:", default=True
 )
 
 cadastro = st.Page(
@@ -170,19 +170,19 @@ cadastro = st.Page(
 )
 
 escolas = st.Page(
-    "feito/Escolas.py", title="Escolas", icon=":material/school:"
+    "páginas/Escolas.py", title="Escolas", icon=":material/school:"
 )
 
 graficos = st.Page(
-    "feito/Gráficos.py", title="Gráficos", icon=":material/bar_chart:"
+    "páginas/Gráficos.py", title="Gráficos", icon=":material/bar_chart:"
 )
 
 geolocalizacao = st.Page(
-    "feito/Geolocalização.py", title="Localizações", icon=":material/map:"
+    "páginas/Geolocalização.py", title="Localizações", icon=":material/map:"
 )
 
 favoritos = st.Page(
-    "feito/Favoritos.py", title="Favoritos", icon=":material/star:"
+    "páginas/Favoritos.py", title="Favoritos", icon=":material/star:"
 )
 
 if st.session_state.logged_in:
