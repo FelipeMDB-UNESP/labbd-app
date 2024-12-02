@@ -2,6 +2,24 @@ import streamlit as st
 import pandas as pd
 import mysql.connector
 
+if "botao1" not in st.session_state:
+    st.session_state.botao1 = True
+
+if "botao2" not in st.session_state:
+    st.session_state.botao2 = True
+
+if "botao3" not in st.session_state:
+    st.session_state.botao3 = True
+
+if "botao4" not in st.session_state:
+    st.session_state.botao4 = True
+
+if "botao5" not in st.session_state:
+    st.session_state.botao5 = True
+
+if "botao6" not in st.session_state:
+    st.session_state.botao6 = True
+
 st.header("Gerenciamento de Escolas")
 
 conn = mysql.connector.connect(host=st.secrets["DB_HOST"],
@@ -42,35 +60,89 @@ def load_alunos_por_nivel():
     return df
 
 if st.button("Listar Escolas"):
-    st.subheader("Lista de Escolas")
-    df_escolas = load_escolas()
-    st.write(df_escolas)
+    if st.session_state.botao1:
+        st.subheader("Lista de Escolas")
+        st.session_state.botao1 = False
+        st.session_state.botao2 = True
+        st.session_state.botao3 = True
+        st.session_state.botao4 = True
+        st.session_state.botao5 = True
+        st.session_state.botao6 = True
+        df_escolas = load_escolas()
+        st.write(df_escolas)
+    else:
+        st.session_state.botao1 = True
 
 if st.button("Mostrar Totais por Escola"):
-    st.subheader("Totais por Escola")
-    df_totals = load_totals()
-    st.write(df_totals)
+    if st.session_state.botao2:
+        st.subheader("Totais por Escola")
+        st.session_state.botao1 = True
+        st.session_state.botao2 = False
+        st.session_state.botao3 = True
+        st.session_state.botao4 = True
+        st.session_state.botao5 = True
+        st.session_state.botao6 = True
+        df_totals = load_totals()
+        st.write(df_totals)
+    else:
+        st.session_state.botao2 = True
 
 if st.button("Ordenar Escolas por Número de Alunos"):
-    st.subheader("Escolas Ordenadas por Número de Alunos")
-    df_totals = load_totals()
-    df_sorted = df_totals.sort_values(by="TOTAL_ALUNOS", ascending=False)
-    st.write(df_sorted)
+    if st.session_state.botao3:
+        st.subheader("Escolas Ordenadas por Número de Alunos")
+        st.session_state.botao1 = True
+        st.session_state.botao2 = True
+        st.session_state.botao3 = False
+        st.session_state.botao4 = True
+        st.session_state.botao5 = True
+        st.session_state.botao6 = True
+        df_totals = load_totals()
+        df_sorted = df_totals.sort_values(by="TOTAL_ALUNOS", ascending=False)
+        st.write(df_sorted)
+    else:
+        st.session_state.botao3 = True
 
 if st.button("Ver Escolas e suas turmas"):
-    st.subheader("Escola e suas turmas")
-    df_uma_escola = load_escola_turmas()
-    st.write(df_uma_escola)
+    if st.session_state.botao4:
+        st.subheader("Escola e suas turmas")
+        st.session_state.botao1 = True
+        st.session_state.botao2 = True
+        st.session_state.botao3 = True
+        st.session_state.botao4 = False
+        st.session_state.botao5 = True
+        st.session_state.botao6 = True
+        df_uma_escola = load_escola_turmas()
+        st.write(df_uma_escola)
+    else:
+        st.session_state.botao4 = True
 
 if st.button("Ver Professores e Alunos por Escola"):
-    st.subheader("Professores e Alunos por Escola")
-    df_professores_alunos = load_professores_alunos()
-    st.write(df_professores_alunos)
+    if st.session_state.botao5:
+        st.subheader("Professores e Alunos por Escola")
+        st.session_state.botao1 = True
+        st.session_state.botao2 = True
+        st.session_state.botao3 = True
+        st.session_state.botao4 = True
+        st.session_state.botao5 = False
+        st.session_state.botao6 = True
+        df_professores_alunos = load_professores_alunos()
+        st.write(df_professores_alunos)
+    else:
+        st.session_state.botao5 = True
 
 if st.button("Ver Alunos por Nível de Ensino"):
-    st.subheader("Alunos por Nível de Ensino")
-    df_alunos_por_nivel = load_alunos_por_nivel()
-    st.write(df_alunos_por_nivel)
+    if st.session_state.botao6:
+        st.subheader("Alunos por Nível de Ensino")
+        st.session_state.botao1 = True
+        st.session_state.botao2 = True
+        st.session_state.botao3 = True
+        st.session_state.botao4 = True
+        st.session_state.botao5 = True
+        st.session_state.botao6 = False
+        df_alunos_por_nivel = load_alunos_por_nivel()
+        st.write(df_alunos_por_nivel)
+    else:
+        st.session_state.botao6 = True
 
 cursor.close()
 conn.close()
