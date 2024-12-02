@@ -10,13 +10,19 @@ if "logging_in" not in st.session_state:
     st.session_state.logging_in = False
 
 def login():
+
+    st.set_page_config(layout="centered")
+        
+    st.title("Bem vindo à Central")
     left, right = st.columns([0.12,0.88])
     
     if left.button("Sign in"):
         st.session_state.signed_in = True
+        st.session_state.reload = True
         st.rerun()
     if right.button("Log in"):
         st.session_state.logging_in = True
+        st.session_state.reload = True
         st.rerun()
 
 def logout():
@@ -27,7 +33,6 @@ def logout():
 def logar():
     import streamlit as st
     import mysql.connector
-    import pandas as pd
 
     st.header("Dashboard com informações escolares")
 
@@ -52,7 +57,6 @@ def logar():
         cursor.close()
         conn.close()
         return True
-
     
     with st.form("login"):
         st.title('Login de Usuário')

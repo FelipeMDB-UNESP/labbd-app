@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.header("Geolocalização da Escolas")
+st.header("Localização da Escolas")
 
 st.markdown(
     """
