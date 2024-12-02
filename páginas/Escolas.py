@@ -42,7 +42,7 @@ def load_totals():
     return df
 
 def load_escola_turmas():
-    cursor.execute("SELECT * FROM V_Escola_Turmas;")
+    cursor.execute("SELECT * FROM v_escola_turmas;")
     res = cursor.fetchall()
     df = pd.DataFrame(res, columns=cursor.column_names)
     return df
