@@ -49,14 +49,16 @@ def logar():
         cursor.execute(sql_command)
         res = cursor.fetchall()
 
-        if res == []:
+        if res:
+            user_id = res[0]
+            st.session_state["user_id"] = user_id[0]
             cursor.close()
             conn.close()
-            return False
+            return True
         
         cursor.close()
         conn.close()
-        return True
+        return False
     
     with st.form("login"):
         st.title('Login de Usuário')
@@ -98,6 +100,7 @@ def cadastrar():
                                 , auth_plugin='mysql_native_password')
         cursor = conn.cursor()
 
+
         # Comando de inserção com o campo nomeUsuario incluído
         inp = f"""
             INSERT INTO usuario (nome, email, nomeUsuario, tipoPerfil, senha, dataNascimento)
@@ -106,7 +109,17 @@ def cadastrar():
         try:
             cursor.execute(inp)
             conn.commit()
+
+            sql_command = f"""SELECT * FROM usuario WHERE nomeUsuario = '{nome_usuario}' and senha = SHA('{senha}');"""
+            cursor.execute(sql_command)
+            res = cursor.fetchall()
+
+            if res:
+                user_id = res[0]
+                st.session_state["user_id"] = user_id[0]
+
             st.success("Usuário cadastrado com sucesso.")
+            
         except Exception as e:
             conn.rollback()
             st.error(f"Erro ao cadastrar o usuário: {e}")
